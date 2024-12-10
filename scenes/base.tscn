@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvlipam02l2y8"]
+
+[ext_resource type="Script" path="res://scripts/base.gd" id="1_fov38"]
+[ext_resource type="Texture2D" uid="uid://cc1myj2t7qxbh" path="res://assets/base1.png" id="1_jl3ij"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46vx8"]
+radius = 47.0425
+
+[node name="base" type="StaticBody2D" groups=["navigation"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["base", "interactible"]]
+shape = SubResource("CircleShape2D_46vx8")
+
+[node name="Area2D" type="Area2D" parent="." groups=["base", "interactible"]]
+script = ExtResource("1_fov38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["base", "interactible"]]
+shape = SubResource("CircleShape2D_46vx8")
+
+[node name="Base1" type="Sprite2D" parent="."]
+texture = ExtResource("1_jl3ij")
