@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://ddu4q71d6tlf2"]
+[gd_scene load_steps=11 format=4 uid="uid://ddu4q71d6tlf2"]
 
 [ext_resource type="Texture2D" uid="uid://dogrswdinjug0" path="res://icon.svg" id="1_bqs3c"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_fmge5"]
 [ext_resource type="Texture2D" uid="uid://bk53yhk3lmgqf" path="res://Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="2_wdgx1"]
 [ext_resource type="PackedScene" uid="uid://klkcxfvfyxuh" path="res://scenes/character.tscn" id="4_yrlbt"]
 [ext_resource type="PackedScene" uid="uid://bvlipam02l2y8" path="res://scenes/base.tscn" id="6_bpwjv"]
+[ext_resource type="Script" path="res://base_button.gd" id="7_anvin"]
 [ext_resource type="Script" path="res://scripts/navigation.gd" id="7_i6xrl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t00uv"]
@@ -1184,14 +1185,30 @@ position = Vector2(371, 428)
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("7_i6xrl")
 
-[node name="base1" parent="." instance=ExtResource("6_bpwjv")]
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 257.0
+offset_top = 606.0
+offset_right = 302.0
+offset_bottom = 646.0
+
+[node name="Button" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "base"
+script = ExtResource("7_anvin")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="base1" parent="Environment" instance=ExtResource("6_bpwjv")]
 position = Vector2(363, 515)
 scale = Vector2(0.5, 0.5)
 
-[node name="base2" parent="." instance=ExtResource("6_bpwjv")]
+[node name="base2" parent="Environment" instance=ExtResource("6_bpwjv")]
 position = Vector2(605, 117)
 scale = Vector2(0.5, 0.5)
 
-[node name="base3" parent="." instance=ExtResource("6_bpwjv")]
+[node name="base3" parent="Environment" instance=ExtResource("6_bpwjv")]
 position = Vector2(97, 195)
 scale = Vector2(0.5, 0.5)
+
+[connection signal="base_placed" from="GridContainer/Button" to="GridContainer/Button" method="_on_base_placed"]
+[connection signal="button_up" from="GridContainer/Button" to="GridContainer/Button" method="_on_button_up"]
