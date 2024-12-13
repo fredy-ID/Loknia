@@ -35,6 +35,8 @@ func _on_button_up() -> void:
 func _on_add_new_base():
 	print("adding new base")
 
-func _on_base_placed() -> void:
+func _on_base_placed(existing_base=null) -> void:
+	if(existing_base):
+		base=existing_base
 	base.add_to_group("base")
 	state = action.CAN_BE_CLICKED

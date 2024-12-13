@@ -27,7 +27,7 @@ func _physics_process(delta: float):
 	elif state == action.TARGET_SELECTED:
 		move_to_target(delta)
 	elif state==action.HARVEST:
-		playerPBar.set_z_index(1)
+		#playerPBar.set_z_index(1)
 		playerPBar.set_visible(true)
 		harvest(delta)
 
@@ -45,6 +45,9 @@ func harvest(delta: float):
 		# Appeler d'autres fonctions si nécessaire après la récolte
 
 func move_to_target(delta: float):
+	if not is_instance_valid(target):
+		search_next_base_direction()
+		return
 	nav.target_position = calculate_target_position(target.global_position, self.position, stop_distance)
 	var direction = Vector2()
 	direction = nav.get_next_path_position() - global_position

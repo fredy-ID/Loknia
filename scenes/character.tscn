@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://klkcxfvfyxuh"]
+[gd_scene load_steps=5 format=3 uid="uid://klkcxfvfyxuh"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_7w8ip"]
 [ext_resource type="Texture2D" uid="uid://bsu1kl7c6ctcd" path="res://assets/character.png" id="2_5r6rl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f666s"]
+bg_color = Color(1, 0.494118, 0.113725, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j85hl"]
 radius = 15.0
@@ -12,10 +15,13 @@ script = ExtResource("1_7w8ip")
 
 [node name="pBar" type="ProgressBar" parent="."]
 visible = false
-offset_left = -30.0
-offset_top = -36.0
-offset_right = 32.0
-offset_bottom = -9.0
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 185.0
+offset_bottom = 10.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/fill = SubResource("StyleBoxFlat_f666s")
+value = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 scale = Vector2(0.36, 0.36)

@@ -9,7 +9,7 @@ radius = 47.0425
 [node name="base" type="StaticBody2D" groups=["base", "navigation"]]
 script = ExtResource("1_fov38")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="baseCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_46vx8")
 
 [node name="Area2D" type="Area2D" parent="." groups=["Collision_Interactible_BASE"]]
@@ -20,4 +20,30 @@ shape = SubResource("CircleShape2D_46vx8")
 [node name="Base1" type="Sprite2D" parent="."]
 texture = ExtResource("1_jl3ij")
 
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="move" type="Button" parent="Buttons"]
+offset_left = -87.0
+offset_top = 46.0
+offset_right = -10.0
+offset_bottom = 77.0
+text = "Deplacer"
+
+[node name="delete" type="Button" parent="Buttons"]
+offset_left = 10.0
+offset_top = 45.0
+offset_right = 100.0
+offset_bottom = 76.0
+text = "Supprimer
+"
+
 [connection signal="add_new_base" from="." to="." method="_on_add_new_base"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="button_up" from="Buttons/move" to="." method="_on_move_button_up"]
+[connection signal="button_up" from="Buttons/delete" to="." method="_on_delete_button_up"]
