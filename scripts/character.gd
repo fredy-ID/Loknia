@@ -18,7 +18,7 @@ var target: StaticBody2D
 var harvest_progress = 0.0
 var harvest_duration = 2.0  # Durée totale de la récolte en secondes
 
-var stop_distance = 10.0
+var stop_distance = 30.0
 
 func _physics_process(delta: float):
 	if state == action.IDLE:
@@ -63,7 +63,7 @@ func search_next_base_direction():
 func select_base():
 	var bases = get_tree().get_nodes_in_group("base")
 	var base = randi_range(0, bases.size()-1)
-	print("bases _____ : ", bases, "SIZE : ____ ", bases.size()-1, "SELECTED BASE : ____ ", base)
+	#print("bases _____ : ", bases, "SIZE : ____ ", bases.size()-1, "SELECTED BASE : ____ ", base)
 	#print("points_dict : ", points_dict)
 	#print("points_dict : ", points_dict[1])
 	return bases[base]
@@ -73,7 +73,7 @@ func calculate_target_position(base_pos: Vector2, char_pos: Vector2, stop_dist: 
 	return base_pos - direction * stop_dist
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area.get_groups())
+	#print(area.get_groups())
 	if area.is_in_group("Collision_Interactible_BASE"):
 		state=action.HARVEST
 		
