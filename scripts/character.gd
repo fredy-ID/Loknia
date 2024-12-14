@@ -18,7 +18,7 @@ var target: StaticBody2D
 var harvest_progress = 0.0
 var harvest_duration = 2.0  # Durée totale de la récolte en secondes
 
-var stop_distance = 30.0
+var stop_distance = 10.0
 
 func _physics_process(delta: float):
 	if state == action.IDLE:
@@ -48,7 +48,7 @@ func move_to_target(delta: float):
 	if not is_instance_valid(target):
 		search_next_base_direction()
 		return
-	nav.target_position = calculate_target_position(target.global_position, self.position, stop_distance)
+	nav.target_position = calculate_target_position(target.find_child("baseCollision").global_position, self.position, stop_distance)
 	var direction = Vector2()
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()

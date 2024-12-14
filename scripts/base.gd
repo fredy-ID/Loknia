@@ -27,16 +27,11 @@ func _process(delta: float) -> void:
 	#var world_pos = GameManager.world_floor_tilemap.to_global(local_pos)
 	#global_position = world_pos
 	
-	var mouse_tile = GameManager.world_floor_tilemap.local_to_map(get_global_mouse_position())
-	#var local_pos = GameManager.world_floor_tilemap.map_to_local(mouse_tile)
-	#var world_pos = GameManager.world_floor_tilemap.to_global(local_pos)
-	
-	
-	var coords: Vector2i = Vector2i(16,1)
-	var tilemap_atlas_coord = GameManager.world_floor_tilemap.get_cell_atlas_coords(mouse_tile)
-	
-	print(tilemap_atlas_coord)
-	GameManager.world_floor_tilemap.set_cell(mouse_tile, 0, coords)
+	#var mouse_tile = GameManager.world_floor_tilemap.local_to_map(get_global_mouse_position())
+	#
+	#var coords: Vector2i = Vector2i(0,42)
+	#print(mouse_tile)
+	#GameManager.world_floor_tilemap.set_cell(mouse_tile, 0, coords)
 
 
 func _physics_process(delta):

@@ -1165,6 +1165,7 @@ texture = ExtResource("2_wdgx1")
 10:88/0 = 0
 14:88/0 = 0
 15:88/0 = 0
+0:44/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_kmqvl"]
 physics_layer_0/collision_layer = 1
