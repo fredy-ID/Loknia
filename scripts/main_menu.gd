@@ -20,4 +20,5 @@ func _on_quit_button_up() -> void:
 
 
 func _on_options_button_up() -> void:
-	get_tree().change_scene_to_file("res://scenes/Options.tscn")
+	GameManager.prevscene = get_tree().current_scene.scene_file_path
+	get_tree().change_scene_to_file("res://scenes/MenuOptions.tscn")
