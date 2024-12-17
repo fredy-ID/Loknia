@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://ddu4q71d6tlf2"]
+[gd_scene load_steps=14 format=4 uid="uid://ddu4q71d6tlf2"]
 
 [ext_resource type="Texture2D" uid="uid://dogrswdinjug0" path="res://icon.svg" id="1_bqs3c"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_fmge5"]
+[ext_resource type="PackedScene" uid="uid://c4bg0jtdndslq" path="res://UI/ui.tscn" id="2_6p1yg"]
 [ext_resource type="Script" path="res://scripts/tile_maps.gd" id="2_okx7p"]
 [ext_resource type="Texture2D" uid="uid://bk53yhk3lmgqf" path="res://Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="2_wdgx1"]
 [ext_resource type="Script" path="res://scripts/navigation_region_2d.gd" id="3_sp6nw"]
@@ -1184,8 +1185,10 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navigation"
 
 [node name="World" type="Node2D"]
-position = Vector2(29, 3)
+position = Vector2(177, 31)
 script = ExtResource("1_fmge5")
+
+[node name="Ui" parent="." instance=ExtResource("2_6p1yg")]
 
 [node name="TileMaps" type="Node2D" parent="."]
 script = ExtResource("2_okx7p")
@@ -1207,32 +1210,34 @@ position = Vector2(412, 279)
 scale = Vector2(0.398438, 0.375)
 texture = ExtResource("1_bqs3c")
 
-[node name="Character" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(341, 423)
-
-[node name="Character2" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(363, 405)
-
-[node name="Character3" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(371, 428)
-
-[node name="Character4" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(371, 428)
-
-[node name="Character5" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(371, 428)
-
-[node name="Character6" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(371, 428)
-
-[node name="Character7" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(371, 428)
-
-[node name="Character8" parent="." instance=ExtResource("4_yrlbt")]
-position = Vector2(371, 428)
-
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("7_i6xrl")
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Character" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(341, 423)
+
+[node name="Character2" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(363, 405)
+
+[node name="Character3" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(371, 428)
+
+[node name="Character4" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(371, 428)
+
+[node name="Character5" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(371, 428)
+
+[node name="Character6" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(371, 428)
+
+[node name="Character7" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(371, 428)
+
+[node name="Character8" parent="Units" instance=ExtResource("4_yrlbt")]
+position = Vector2(371, 428)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = 257.0
@@ -1248,14 +1253,15 @@ script = ExtResource("7_anvin")
 [node name="Environment" type="Node" parent="."]
 
 [node name="base1" parent="Environment" instance=ExtResource("6_bpwjv")]
-position = Vector2(392, 518)
+position = Vector2(540, 546)
 
 [node name="base2" parent="Environment" instance=ExtResource("6_bpwjv")]
-position = Vector2(634, 120)
+position = Vector2(782, 148)
 
 [node name="base3" parent="Environment" instance=ExtResource("6_bpwjv")]
-position = Vector2(124, 195)
+position = Vector2(272, 223)
 
+[connection signal="area_selected" from="." to="." method="_on_area_selected"]
 [connection signal="bake_terrain" from="NavigationRegion2D" to="NavigationRegion2D" method="_on_bake_terrain"]
 [connection signal="base_placed" from="GridContainer/Button" to="GridContainer/Button" method="_on_base_placed"]
 [connection signal="button_up" from="GridContainer/Button" to="GridContainer/Button" method="_on_button_up"]

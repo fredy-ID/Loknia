@@ -16,7 +16,7 @@ var mouse_in_state: bool = false
 func _ready() -> void:
 	buttons_container.visible = toggle_action_buttons
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_released("click") and mouse_in_state==false:
 		buttons_container.visible = false
 		
@@ -74,7 +74,7 @@ func _on_area_2d_mouse_entered() -> void:
 func _on_area_2d_mouse_exited() -> void:
 	mouse_in_state=false
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
 	if Input.is_action_just_pressed("click"):
 		toggle_action_buttons = !toggle_action_buttons
 		buttons_container.visible = toggle_action_buttons

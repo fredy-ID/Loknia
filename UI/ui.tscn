@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4bg0jtdndslq"]
+
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="1_ld28x"]
+
+[node name="Ui" type="CanvasLayer"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 323)
+script = ExtResource("1_ld28x")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

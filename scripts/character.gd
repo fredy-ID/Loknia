@@ -4,10 +4,11 @@ var speed = 300
 var accel = 7
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
-@onready var base1: StaticBody2D = $"../Environment/base1"
-@onready var base2: StaticBody2D = $"../Environment/base2"
-@onready var base3: StaticBody2D = $"../Environment/base3"
 @onready var playerPBar: ProgressBar = $pBar
+
+@export var selected: bool = false
+@onready var box: Panel = $Box
+
 
 enum action {IDLE=0, TARGET_SELECTED=1, HARVEST=2}
 var state:int = 0
@@ -20,6 +21,9 @@ var harvest_duration = 2.0  # Durée totale de la récolte en secondes
 
 var stop_distance = 10.0
 
+func _ready():
+	set_selected(selected)
+
 func _physics_process(delta: float):
 	if state == action.IDLE:
 		search_next_base_direction()
@@ -30,6 +34,10 @@ func _physics_process(delta: float):
 		#playerPBar.set_z_index(1)
 		playerPBar.set_visible(true)
 		harvest(delta)
+		
+
+func set_selected(_visible: bool):
+	box.visible = _visible
 
 func harvest(delta: float):
 	# Mettre à jour la progression de la récolte
