@@ -2,7 +2,9 @@ extends StaticBody2D
 
 signal add_new_base
 
-@onready var base_button: Button = $"../../GridContainer/Button"
+var debug_interface : GridContainer = preload("res://scenes/debug_interface.tscn").instantiate()
+
+@onready var base_button: Button = debug_interface.get_node('Base')
 @onready var buttons_container: Control = $Buttons
 @onready var navigation_region_2d : NavigationRegion2D = $"../../NavigationRegion2D"
 

@@ -25,11 +25,17 @@ func _ready():
 	set_selected(selected)
 
 func _physics_process(delta: float):
+	
 	if state == action.IDLE:
-		search_next_base_direction()
+		var isBaseExists = search_next_base_direction()
+		if !isBaseExists:
+			return
 		state=action.TARGET_SELECTED
 	elif state == action.TARGET_SELECTED:
-		move_to_target(delta)
+		var isTargetExists = move_to_target(delta)
+		if !isTargetExists:
+			state = action.IDLE
+			return
 	elif state==action.HARVEST:
 		#playerPBar.set_z_index(1)
 		playerPBar.set_visible(true)
@@ -54,19 +60,27 @@ func harvest(delta: float):
 
 func move_to_target(delta: float):
 	if not is_instance_valid(target):
-		search_next_base_direction()
-		return
+		var isBaseExists = search_next_base_direction()
+		if !isBaseExists:
+			return false
+		return true
 	nav.target_position = calculate_target_position(target.find_child("baseCollision").global_position, self.position, stop_distance)
 	var direction = Vector2()
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	velocity = velocity.lerp(direction * speed, accel * delta)
 	move_and_slide()
+	return true
 
-func search_next_base_direction():
+func search_next_base_direction() -> bool:
 	var base = select_base()
-	target = base
-	
+	if !base:
+		target = null
+		return false
+	else:
+		target = base
+		return true 
+		
 
 func select_base():
 	var bases = get_tree().get_nodes_in_group("base")
@@ -74,7 +88,10 @@ func select_base():
 	#print("bases _____ : ", bases, "SIZE : ____ ", bases.size()-1, "SELECTED BASE : ____ ", base)
 	#print("points_dict : ", points_dict)
 	#print("points_dict : ", points_dict[1])
+	if bases.size() == 0:
+		return
 	return bases[base]
+	
 
 func calculate_target_position(base_pos: Vector2, char_pos: Vector2, stop_dist: float) -> Vector2:
 	var direction = (base_pos - char_pos).normalized()

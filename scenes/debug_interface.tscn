@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5fp3qlner1i7"]
+
+[ext_resource type="Script" path="res://base_button.gd" id="1_y3nhe"]
+
+[node name="DebugInterface" type="GridContainer"]
+offset_left = 257.0
+offset_top = 606.0
+offset_right = 302.0
+offset_bottom = 646.0
+
+[node name="Base" type="Button" parent="."]
+layout_mode = 2
+text = "base"
+script = ExtResource("1_y3nhe")
+
+[connection signal="base_placed" from="Base" to="Base" method="_on_base_placed"]
+[connection signal="button_up" from="Base" to="Base" method="_on_button_up"]
